@@ -1,0 +1,141 @@
+
+<br>
+<br>
+<div class="container home" >
+    <div class="card " >
+        <div class=" card-body"  >
+            <div class="contenedor">
+            <h4 class="card-title" >Historial</h4>
+            <div class="card" style="width: 12rem;"   *ngFor="let item of historiales" >
+                <div class="card-body">
+                  <h4 class="card-title">{{item.ciudad}}</h4>
+                  <h5 class="card-subtitle mb-2 text-body-secondary">{{item.fecha}}</h5>
+                  <p class="card-text">{{item.estadoclima}}</p>
+                  
+                  <p  class="card-text"><span class="material-symbols-outlined">thermostat</span>{{item.temperatura}}</p>
+                 
+                  
+                </div>
+              </div>
+            </div>
+              <button class="btn btn-danger" (click)="eliminarhistorial()" >Eliminar Historial</button>
+        </div>
+
+    </div>
+    <div class="card "  >
+        <div  class="card-body" >
+            <form #piWeatherFind="ngForm"  (ngSubmit)="apiWeatherFind(busqueda)" >   
+                <div class="selects" >
+                    <div class="select1" >
+                        <label class="form-label" for="selectpais">País</label>
+                        <select class="form-control" name="selectpais" [(ngModel)]="busqueda.pais" name = "pais"   (ngModelChange)="apiCities(busqueda.pais)" >
+                            <option value="" disabled selected>Honduras</option>
+                            <option  *ngFor="let item of paises" [value]="item.codigo"  >{{item.nombre}}</option>
+                        </select>
+                        
+                    </div>
+                    <div class="select1" >
+                        <label class="form-label" for="selectciudad">Ciudad</label>
+                        <select class="form-control" name="selectciudad" id="" [(ngModel)]="busqueda.ciudad" name = "ciudad">
+                            <option value="" disabled selected>Seleccionar ciudad</option>
+                            <!--
+                            <option  value="Tegucigalpa">Tegucigalpa</option>
+                            -->
+                            <option  *ngFor="let item of ciudades" [value]="item.nombre">{{item.nombre}}</option>
+                             
+                        </select>
+                    </div>
+                    <div class="select1" >
+                        <label class="form-label" for="selectfecha"  >Fecha</label>
+                        <input class="form-control"  type="date" [(ngModel)]="busqueda.fechaFind"  name="fecha" >
+                    </div>
+                    <div class="buscar" >
+                        <br>
+                        <button class="form-control btn btn-primary "  >Buscar</button>
+                    </div>
+                
+                
+                </div>
+            </form>     
+            <br>
+            <div class="clima">    
+                <div class="card" style="width: 18rem;">
+                    <img src={{imagen}} class="card-img-top">
+                    <div class="card-body">
+                    <h4 class="card-title">{{ciudad}}</h4>
+                    <h5 class="card-title">{{TFchhoy}}</h5>
+                    <p class="card-text">{{descripcion}}</p>
+                    <div class="temperaturas" >
+                        <div class="temp">
+                            <label for="celcius">Celcius</label><br>
+                            <span class="material-symbols-outlined">thermostat</span>
+                            <a>{{tempCelcius}}º</a>
+                        </div>
+                        <div class="temp">
+                            <label for="celcius">Farenheit</label><br>
+                            <span class="material-symbols-outlined">thermostat</span>
+                            <a>{{tempFareh}}º</a>
+                        </div>
+                       
+                    </div>
+                    
+                    </div>
+                </div>
+                <br>
+                <div class="past" >
+                    <div class="card ">
+                        <div class="card-body">
+                            <a>{{estadoclimaantier}}</a><br>
+                            <img src={{iconantier}} >
+                            <h5>{{TFchAntier}}</h5>
+                            
+                            <div class="temperaturas" >
+                                
+                                <div class="temp">
+                                    <label for="celcius">Celcius</label><br>
+                                    <span class="material-symbols-outlined">thermostat</span>
+                                    <a>{{tempMaxCAntier}}º</a>
+                                </div>
+                                <div class="temp">
+                                    <label for="celcius">Farenheit</label><br>
+                                    <span class="material-symbols-outlined">thermostat</span>
+                                    <a>{{tempMaxFantier}}º</a>
+                                </div>
+        
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card ">
+                        <div class="card-body">
+                            <div class="temp-past">
+                                <a>{{estadoclimaayer}}</a><br>
+                                <img src={{iconayer}} >
+                                <h5>{{TFchAyer}}</h5>
+                                
+                                <div class="temperaturas" >
+                                    <div class="temp">
+                                        <label for="celcius">Celcius</label><br>
+                                        <span class="material-symbols-outlined">thermostat</span>
+                                        <a>{{tempMaxCAyer}}º</a>
+                                    </div>
+                                    <div class="temp">
+                                        <label for="celcius">Farenheit</label><br>
+                                        <span class="material-symbols-outlined">thermostat</span>
+                                        <a>{{tempMaxFAyer}}º</a>
+                                        
+                                    </div>
+                                
+                                    
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+</div>
